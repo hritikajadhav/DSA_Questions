@@ -1,1 +1,59 @@
-
+class Main {
+    public static void main(String[] args) {
+        System.out.println("Try programiz.pro");
+        int[] nums = {98, 66, 2,88,34,1,25};
+        insertionSort(nums);
+        for(int i=0 ; i< nums.length ; i++){
+            System.out.println(nums[i]);
+        }
+    }
+    
+    public static void insertionSort(int[] nums){
+        for(int i=0 ; i < nums.length-1 ; i++){
+            for(int j=i+1 ; j>0 ; j--){
+                if(nums[j] < nums[j-1]){
+                    int temp = nums[j];
+                    nums[j]=nums[j-1];
+                    nums[j-1] = temp;
+                }
+                else{
+                    break;
+                }
+            }
+        }
+    }
+    
+    public static void bubbleSort(int[] nums){
+        for(int j= 0 ; j< nums.length-1 ; j++){
+            for(int i=0 ; i< nums.length-1-j ; i++){
+            if(nums[i]>nums[i+1]){
+                int temp = nums[i];
+                nums[i] = nums[i+1];
+                nums[i+1] = temp;
+            }
+        }
+    }
+    }
+    public static int[] selectionSort(int[] nums) {
+        for(int i=0 ; i< nums.length-1; i++){
+            int last = nums.length - i - 1;
+            int a = maxInteger(nums,last);
+            swap(nums , last , a);
+        }
+        return nums;
+    }
+    public static int maxInteger(int[] nums , int last){
+        int maxI = 0;
+        for(int i=0 ; i<=last; i++){
+            if(nums[maxI] < nums[i]){
+                maxI = i;
+            }
+        }
+        return maxI;
+    }
+    public static void swap(int[] arr , int last , int maxI){
+        int temp = arr[last];
+        arr[last] = arr[maxI];
+        arr[maxI] = temp;
+    }
+}
