@@ -7,7 +7,76 @@ class Main {
             System.out.println(nums[i]);
         }
     }
+
+        public static void quickSort(int[] nums , int low , int hi){
+        if(low>= hi){
+            return;
+        }
+        int s= low;
+        int e = hi;
+        int m = low + (hi - low) / 2;
+        int pivot = nums[m];
+        
+        while (s<=e){
+            while(nums[s] < pivot){
+                s++;
+            }
+            while(nums[e] > pivot){
+                e--;
+            }
+        if(s<=e){
+            int temp = nums[s];
+            nums[s]=nums[e];
+            nums[e] = temp;
+            s++;e--;
+        }
+        }
+        quickSort(nums , low , e);
+        quickSort(nums , s , hi);
+    }
+
+        public static void mergeSort(int[] arr , int s , int e){
+        if(e - s == 1){
+            return;
+        }
+        int mid = (s+e)/2;
+        mergeSort(arr , s,mid);
+        mergeSort(arr , mid,e);
+        merge(arr,s,mid,e);
+    }
     
+    public static void merge(int[] arr , int s , int mid ,int e){
+        int[] mix = new int[e - s];
+        int i=s;
+        int j=mid;
+        int k=0;
+        
+        while(i<mid && j<e){
+            if(arr[i] < arr[j]){
+                mix[k] = arr[i];
+                i++;
+            }
+            else{
+                mix[k]=arr[j];
+                j++;
+            }
+            k++;
+        }
+        while(i<mid){
+            mix[k] = arr[i];
+            i++;
+            k++;
+        }
+        while(j<e){
+            mix[k] = arr[j];
+            j++;
+            k++;
+        }
+        
+        for(int l=0 ; l<mix.length ; l++){
+            arr[s+l]=mix[l];
+        }
+    }
     public static void insertionSort(int[] nums){
         for(int i=0 ; i < nums.length-1 ; i++){
             for(int j=i+1 ; j>0 ; j--){
