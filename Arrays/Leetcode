@@ -1,1 +1,67 @@
+class Main {
+public static void main (String[] args){
 
+}
+//1752 Leetcode
+public boolean check(int[] nums) {
+        int count=0;
+        int n= nums.length;
+        if(nums[n-1]>nums[0]){
+                count++;
+            }
+        for(int i=0 ; i< nums.length-1 ; i++) {
+			if(nums[i]>nums[i+1]){
+                count++;
+            }
+            if(count>1){
+                return false;
+            }
+		}
+        return true;    
+    }
+
+//26 Leetcode
+public int removeDuplicates(int[] nums) {
+        int i=0,j=0;
+        HashSet<Integer> duplicate= new HashSet<Integer>();        
+        while(i<nums.length){
+            if(!duplicate.contains(nums[i])){
+                nums[j]=nums[i];
+                j++;
+                duplicate.add(nums[i]);
+            }
+            i++;
+        }
+        return duplicate.size();
+    }
+
+  //189 Leetcode
+  public void rotate(int[] nums, int k) {
+        k = k% nums.length;
+        reverse(nums,0,nums.length-1);
+        reverse(nums,0,k-1);
+        reverse(nums,k,nums.length-1);
+    }
+    public static void reverse(int[] nums , int left , int right){
+        while(left<right){
+            int temp = nums[left];
+            nums[left]=nums[right];
+            nums[right]=temp;
+            left++;
+            right--;
+        }
+    }
+
+  //283 Leetcode
+  public void moveZeroes(int[] nums) {
+        int j=0;
+        for(int i=0 ; i<nums.length ; i++){
+            if(nums[i]!=0){
+                int temp = nums[i];
+                nums[i]=nums[j];
+                nums[j]=temp;
+                j++;
+            }
+        }
+    }
+}
