@@ -14,6 +14,31 @@ public class Main {
 		
 	}
 
+
+
+	//Union of 2 arrays 20-11-25
+	public static void union(int[] arr1 , int[] arr2) {
+		HashSet<Integer> union = new HashSet<Integer>();
+		for(int i =0 ; i<arr1.length ; i++) {
+			union.add(arr1[i]);
+		}
+		for(int i =0 ; i<arr2.length ; i++) {
+			union.add(arr2[i]);
+		}
+		System.out.println(union);
+		
+	}
+	
+	//Linear Search
+	public static boolean linearSearch(int[] arr , int target) {
+		for(int i=0 ; i<arr.length; i++) {
+			if(arr[i]==target) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	//1st and 2nd max element in an array.
 	public static int maxInteger(int[] arr) {
 		int max=0;
@@ -50,4 +75,5 @@ public class Main {
 		}
 		return duplicate.size();
 	}
+
 	}
