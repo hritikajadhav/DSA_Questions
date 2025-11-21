@@ -2,6 +2,43 @@ class Main {
 public static void main (String[] args){
 
 }
+
+//268 Leetcode
+public int missingNumber(int[] nums) {
+        int xor=0;
+        for(int i=0 ; i<nums.length ; i++){
+            xor = xor^nums[i];
+        }
+        for(int j=1 ; j<= nums.length ; j++){
+            xor = xor^j;
+        }
+        return xor;
+    }
+
+//485 Leetcode
+public int findMaxConsecutiveOnes(int[] nums) {
+    int max=0,count=0;
+    for(int i=0 ; i<nums.length ; i++){
+        if(nums[i]!=1){
+            max = Math.max(max,count);
+            count=0;
+        }else{
+        count++;
+        }
+    }
+max=Math.max(max,count);
+return max;
+}
+
+//136 Leetcode
+public int singleNumber(int[] nums) {
+    int xor=0;
+    for(int i=0 ;i<nums.length;i++){
+        xor=xor^nums[i];
+	}
+    return xor;
+}
+
 //1752 Leetcode
 public boolean check(int[] nums) {
         int count=0;
