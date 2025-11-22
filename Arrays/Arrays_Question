@@ -14,8 +14,88 @@ public class Main {
 		
 	}
 
+	//max sub array with sum k (negative+positive)21-11-25
+	public static int subarraySumNegative(int[] a , int k) {
+		int n = a.length; 
+        int maxLen = 0;   
+        for (int i = 0; i < n; i++) {
+            int sum = 0; 
+            for (int j = i; j < n; j++) {
+                sum += a[j]; 
+                if (sum == k) {            
+                    maxLen = Math.max(maxLen, j - i + 1);
+                }
+            }
+        }
 
+        return maxLen; 
+	}
+	
+	//2 Sum 21-11-25
+	public int[] twoSum(int[] nums, int target) {
+        Map<Integer,Integer> remainder = new HashMap<>();
+        for(int i=0 ; i< nums.length ; i++){
+            int rem = target-nums[i];
+            if(remainder.containsKey(rem)){
+                return new int[] {i,remainder.get(rem)};
+            }
+            remainder.put(nums[i],i);
+        }
+        return new int[] {};
+    }
+	
+	//sort 0,1,2 21-11-25
+	public void sortColors(int[] nums) {
+        int low=0,mid=0,high=nums.length-1;
+        while(mid<=high){
+            if(nums[mid]==0){
+                int temp = nums[mid];
+                nums[mid]=nums[low];
+                nums[low]=temp;
+                low++;mid++;
+            }
+            else if(nums[mid]==1){
+                mid++;
+            }
+            else{
+                int temp=nums[mid];
+                nums[mid]=nums[high];
+                nums[high]=temp;
+                high--;
+            }
+        }
+    }
+	//majority of a number 21-11-25
+	public int majorityElement(int[] nums) {
+        int n=nums.length;
+        int ans=0;
+        Map<Integer,Integer> frequency = new HashMap<>();
+        for(int i=0 ; i<nums.length ; i++){
+                frequency.put(nums[i],frequency.getOrDefault(nums[i],0)+1);
+                if(frequency.get(nums[i])>(n/2)){
+                    ans=nums[i];
+                }
+            }
+            return ans;
+        }
+		//Longest sub-array having k sum(only positive) 21-10-25
+	public static int subarraySum(int[] a , int k) {
+		int sum=a[0],right=0,left=0,maxLen=0;
+		int n = a.length;
+		while (right < n) {
+            while (left <= right && sum > k) {
+                sum -= a[left];
+                left++;
+            }
+            if (sum == k) {
+                maxLen = Math.max(maxLen, right - left + 1);
+            }
+            right++;
+            if (right < n) sum += a[right];
+        }
 
+        return maxLen;
+	}
 	//Union of 2 arrays 20-11-25
 	public static void union(int[] arr1 , int[] arr2) {
 		HashSet<Integer> union = new HashSet<Integer>();
