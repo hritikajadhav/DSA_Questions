@@ -14,6 +14,25 @@ public class Main {
 		
 	}
 
+//print max_subarray with max sum
+public static void printSubArray(int[] arr){
+		int start=0,end=0,max=0,sum=0;
+		for(int i=0 ;i<arr.length;i++) {
+			if(sum<0) {
+				sum=0;
+				start=i;
+			}
+			sum=sum+arr[i];
+			if(sum>max) {
+				max=sum;
+				end=i;
+			}
+		}
+		
+		for(int i=start ; i<=end ; i++) {
+			System.out.println(arr[i]);
+		}
+	}
 	//max sub array with sum k (negative+positive)21-11-25
 	public static int subarraySumNegative(int[] a , int k) {
 		int n = a.length; 
