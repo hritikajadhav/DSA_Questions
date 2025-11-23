@@ -2,6 +2,54 @@ class Main {
 public static void main (String[] args){
 
 }
+//169 Leetcode
+public int majorityElement(int[] nums) {
+        int n=nums.length;
+        int ans=0;
+        Map<Integer,Integer> frequency = new HashMap<>();
+        for(int i=0 ; i<nums.length ; i++){
+                frequency.put(nums[i],frequency.getOrDefault(nums[i],0)+1);
+                if(frequency.get(nums[i])>(n/2)){
+                    ans=nums[i];
+                }
+            }
+            return ans;
+        }
+
+//75 sort colours
+public void sortColors(int[] nums) {
+        int low=0,mid=0,high=nums.length-1;
+        while(mid<=high){
+            if(nums[mid]==0){
+                int temp = nums[mid];
+                nums[mid]=nums[low];
+                nums[low]=temp;
+                low++;mid++;
+            }
+            else if(nums[mid]==1){
+                mid++;
+            }
+            else{
+                int temp=nums[mid];
+                nums[mid]=nums[high];
+                nums[high]=temp;
+                high--;
+            }
+        }
+    }
+
+//1 Leetcode
+public int[] twoSum(int[] nums, int target) {
+        Map<Integer,Integer> remainder = new HashMap<>();
+        for(int i=0 ; i< nums.length ; i++){
+            int rem = target-nums[i];
+            if(remainder.containsKey(rem)){
+                return new int[] {i,remainder.get(rem)};
+            }
+            remainder.put(nums[i],i);
+        }
+        return new int[] {};
+    }
 
 //268 Leetcode
 public int missingNumber(int[] nums) {
