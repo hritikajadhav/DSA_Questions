@@ -14,6 +14,22 @@ public class Main {
 		
 	}
 
+	//Leader in an array 23-11-25
+	public static ArrayList<Integer> leaderArray(int[] arr) {
+		ArrayList<Integer> ans = new ArrayList<>();
+		ans.add(arr[arr.length-1]);
+		for(int i=arr.length -1 ; i>1 ; i--) {
+			if(arr[i]<arr[i-1]) {
+				ans.add(0,arr[i-1]);
+			}
+		}
+		
+		for(int i : ans) {
+			System.out.print(i);
+		}
+		return ans;
+	}
+
 //print max_subarray with max sum
 public static void printSubArray(int[] arr){
 		int start=0,end=0,max=0,sum=0;
