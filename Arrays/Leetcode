@@ -3,6 +3,80 @@ public static void main (String[] args){
 
 }
 
+	//560 Leetcode
+    public int subarraySum(int[] nums, int k) {
+        int n=nums.length;
+        int count=0,sum=0;
+        HashMap<Integer,Integer> ans = new HashMap<Integer,Integer>();
+        ans.put(0,1);
+        for(int r=0 ; r< nums.length ; r++){
+            sum=sum+nums[r];
+            if(ans.containsKey(sum-k)){
+                count+=ans.get(sum-k);
+            }
+            ans.put(sum,ans.getOrDefault(sum,0)+1);
+        }
+        return count;
+
+    }
+
+	//54 Spiral Matrix
+    public List<Integer> spiralOrder(int[][] matrix) {
+        List<Integer> result = new ArrayList<Integer>();
+        int top=0,bottom=matrix.length -1 ;
+        int left=0,right=matrix[0].length -1;
+
+        while(top<=bottom && left<= right){
+            for(int j=left; j<= right ; j++){
+                result.add(matrix[top][j]);
+            }
+            top++;
+
+            for(int i=top ; i<=bottom ; i++){
+                result.add(matrix[i][right]);
+            }
+            right--;
+
+            if(top<=bottom){
+                for(int j=right ; j>=left ; j--){
+                    result.add(matrix[bottom][j]);
+                }
+                bottom--;
+            }
+
+            if(left<=right){
+                for(int i=bottom ; i>=top ; i--){
+                    result.add(matrix[i][left]);
+                }
+                left++;
+            }
+        }
+        return result;
+    }
+
+	//48 Leetcode
+    public void rotate(int[][] matrix) {
+        int n= matrix.length;
+       for(int i=0;i<matrix.length;i++){
+        for(int j=i+1;j<matrix[i].length ; j++){
+            int temp = matrix[i][j];
+            matrix[i][j]=matrix[j][i];
+            matrix[j][i]=temp;
+        }
+       } 
+
+       for(int i=0 ; i< matrix.length;i++){
+        int l=0,r=n-1;
+        while(l<r){
+            int temp = matrix[i][l];
+            matrix[i][l]=matrix[i][r];
+            matrix[i][r] = temp;
+            l++;
+            r--;
+        }
+       }
+    }
+
 	//73 Leetcode
     public void setZeroes(int[][] matrix) {
         boolean fr=false,fc=false;
