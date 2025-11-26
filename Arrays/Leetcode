@@ -3,6 +3,27 @@ public static void main (String[] args){
 
 }
 
+
+	//229 Leetcode
+    public List<Integer> majorityElement(int[] nums) {
+        HashMap<Integer,Integer> ans = new HashMap<>();
+        List<Integer> result = new ArrayList<Integer>();
+
+        for(int i=0 ; i< nums.length ; i++){
+            if(ans.containsKey(nums[i])){
+                ans.put(nums[i],ans.getOrDefault(nums[i],0)+1);
+            }
+            else{
+            ans.put(nums[i],1);
+            }
+            if(ans.get(nums[i])>nums.length/3){
+                if(!result.contains(nums[i]))
+                result.add(nums[i]);
+            }
+        }
+        return result;
+    }
+	
 	//560 Leetcode
     public int subarraySum(int[] nums, int k) {
         int n=nums.length;
