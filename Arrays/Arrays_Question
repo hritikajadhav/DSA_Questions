@@ -14,6 +14,44 @@ public class Main {
 		
 	}
 
+	//Count number of subarrays with xor equal to k target 26-11-25	
+	public static int xorSubarray(int[] arr , int k) {
+		Map<Integer , Integer> ans = new HashMap<>();
+		ans.put(0, 1);
+		int xor = 0;
+		int target=0;
+		int count=0;
+		for(int i=0 ; i<arr.length ; i++) {
+			xor = xor^arr[i];
+			target=xor^k;
+			if(ans.containsKey(target)) {
+				count+=ans.get(target);
+			}
+			ans.put(xor, ans.getOrDefault(xor, 0)+1);
+		}
+		return count;
+	}	
+
+	//Length of the longest array with sum 0 26-11-25
+    public static int maxLength(int[] arr ) {
+    	HashMap<Integer , Integer> ans = new HashMap<>();
+    	int sum =0;
+    	int length=0;
+    	for(int i=0 ; i< arr.length ; i++) {
+    		sum=sum+arr[i];
+    		if(sum == 0) {
+    			length = i+1;
+    		}
+    		else if(ans.containsKey(sum)) {
+    			length = Math.max(length, i-ans.get(sum));
+    		}
+    		else {
+    			ans.put(sum, i);
+    		}
+    	}
+    	return length;
+    }
+
 	//Leader in an array 23-11-25
 	public static ArrayList<Integer> leaderArray(int[] arr) {
 		ArrayList<Integer> ans = new ArrayList<>();
