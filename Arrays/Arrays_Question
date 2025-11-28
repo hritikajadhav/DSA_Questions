@@ -14,6 +14,36 @@ public class Main {
 		
 	}
 
+
+
+	//Missing number and duplicate number 27-11-25
+	public static int[] duplicateMissing(int[] arr) {
+		int correct =0;
+		int missing=0;
+		int i=0;
+		while(i<arr.length) {
+			correct = arr[i] - 1;
+			if(arr[i] <= arr.length && arr[i] != arr[correct]) {
+				int temp = arr[i];
+				arr[i] = arr[correct];
+				arr[correct]=temp;
+				
+			}
+			else {
+				i++;
+			}
+		}
+		int duplicate=0;
+        for (int index = 0; index < arr.length; index++) {
+            if (arr[index] != index +1) {
+                missing=index + 1;
+                duplicate = arr[index];
+                
+            }
+        }
+        return new int[] {duplicate,missing};
+	}
+
 	//Count number of subarrays with xor equal to k target 26-11-25	
 	public static int xorSubarray(int[] arr , int k) {
 		Map<Integer , Integer> ans = new HashMap<>();
