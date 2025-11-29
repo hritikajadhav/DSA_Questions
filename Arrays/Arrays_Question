@@ -14,7 +14,43 @@ public class Main {
 		
 	}
 
+	//28-11-25 Upper Bound
+		public static int UpperBound(int[]arr , int k) {
+			int low=0;
+			int high= arr.length;
+			int ans = arr.length;
 
+			while(low<=high) {
+				int mid = low + (high-low)/2;
+				if(arr[mid]>k) {
+					ans=mid;
+					high=mid-1;
+				}else {
+					low=mid+1;
+				}
+				
+			}
+			return ans;
+		}
+
+	//28-11-25 Lower Bound
+	public static int lowerBound(int[]arr , int k) {
+		int low=0;
+		int high= arr.length;
+		int ans = arr.length;
+
+		while(low<=high) {
+			int mid = low + (high-low)/2;
+			if(arr[mid]>=k) {
+				ans=mid;
+				high=mid-1;
+			}else {
+				low=mid+1;
+			}
+			
+		}
+		return ans;
+	}
 
 	//Missing number and duplicate number 27-11-25
 	public static int[] duplicateMissing(int[] arr) {
