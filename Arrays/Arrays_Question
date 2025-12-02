@@ -14,6 +14,48 @@ public class Main {
 		
 	}
 
+	//Nth root of a number 01-12-25
+	public static int nthRoot(int m , int n) {
+		int start=0,end=m;
+		long ans=1;
+		
+		while(start<=end) {
+			int mid = start + (end - start)/2;
+			ans=1;
+			for(int i=0 ; i<n; i++) {
+				ans *= mid;
+				if(ans>m) break;
+			}
+			if(ans == m) {
+				return mid;
+			}
+			else if(ans<m) {
+				start = mid+1;
+			}
+			else {
+				end=mid - 1;
+			}
+		}
+		return -1;
+	}
+	
+	//Find a square root of a number 01-12-25
+	public static int squareRootNumber(int a) {
+		int start=0, end=a/2,ans=0;
+		
+		while(start<=end) {
+			int mid = start + (end - start)/2;
+			if(mid*mid<= a) {
+				ans = (int)mid;
+				start=(int)mid+1;
+			}
+			else {
+				end=(int)mid-1;
+			}
+		}
+		return ans;
+	}
+
 	//Find how many times an array is rotated 30-11-25
 	public static int rotatedArray(int[] arr) {
 		int start=0,end=arr.length -1;
