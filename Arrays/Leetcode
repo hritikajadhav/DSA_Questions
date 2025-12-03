@@ -3,54 +3,132 @@ public static void main (String[] args){
 
 }
 
+	//1539 Leetcode
+public int findKthPositive(int[] arr, int k) {
+        int start =0, end=arr.length-1;
+        while(start<=end){
+            int mid = start + (end - start)/2;
 
-
-	//875 Leetcode
-    public boolean isPossible(int mid, int[] arr, int h){
-    long hours = 0;
-        int n = arr.length;
-        for(int i=0;i<n;i++){
-            hours += (arr[i] + mid - 1) / mid; 
-        }
-        if(hours>h) return false;
-        return true;
-    }
-    public int minEatingSpeed(int[] arr, int h) {
-        int n = arr.length;
-        int lo = 1;
-        int hi = Integer.MIN_VALUE;
-        
-        for(int i=0;i<n;i++){
-            hi = Math.max(hi,arr[i]);
-        }
-        int ans = hi;
-        while(lo<=hi){
-            int mid = lo +(hi-lo)/2;
-            if(isPossible(mid,arr,h)){
-                ans = mid;
-                hi = mid-1;
+            if(arr[mid] - mid - 1 < k){
+                start=mid+1;
             }
             else{
-                lo = mid+1;
+                end=mid-1;
             }
         }
-        return ans;
-    } 
+        return start+k;
+    }
 
-	//162 Leetcode
-    public int findPeakElement(int[] nums) {
-            int start=0 , end = nums.length -1 ;
+	//1011 Leetcode
+public int shipWithinDays(int[] weights, int days) {
+        int start = 0 , end = 0;
+        for(int num : weights){
+            start= Math.max(start , num);
+            end += num;
+        }
         while(start < end){
             int mid = start + (end - start)/2;
-            if(nums[mid] > nums[mid+1]){
-                end = mid;
+            int sum = 0;
+            int day = 1;
+
+            for(int num : weights){
+                if(sum + num >mid){
+                    day++;
+                    sum=num;
+                }
+                else{
+                    sum += num;
+                }
+            }
+            if(day > days){
+                start = mid+1;
             }
             else{
-                start = mid+1;
+                end = mid;
             }
         }
         return start;
     }
+
+	//1283 Leetcode
+public int smallestDivisor(int[] nums, int threshold) {
+        int start=1, high=Integer.MAX_VALUE;
+        int ans=0;
+        for(int i: nums){
+            high=Math.max(high,i);
+        }
+
+        while(start<=high){
+            int mid = start + (high-start)/2;
+            if(calculate(nums,mid,threshold)){
+                ans=mid;
+                high=mid-1;
+            }
+            else{
+                start=mid+1;
+            }
+        }
+        return ans;
+    }
+
+    public static boolean calculate(int[] nums,int mid,int threshold){
+        int sum=0;
+        for(int i=0;i<nums.length;i++){
+            sum+= (nums[i]+mid-1)/mid;
+        }
+
+        return sum<=threshold;
+    }
+
+	//1482 Leetcode
+public int minDays(int[] bloomDay, int m, int k) {
+        long val = (long) m * k ;
+         int n =  bloomDay.length;
+       // edge case 
+       if(val > n ) return -1;
+
+       int maxi = Integer.MIN_VALUE;
+       int mini = Integer.MAX_VALUE;
+        for(int i = 0 ; i < n ; i++){
+        mini = Math.min(bloomDay[i],mini);
+
+       maxi =  Math.max(bloomDay[i], maxi);
+        }
+        
+        // NOW we do binary search 
+
+        int low =  mini , high = maxi;
+
+        while(low <= high){
+            int mid = (low+high)/2;
+
+            if(possible(bloomDay,mid,m,k)){
+                high = mid - 1;
+            }else{
+                low = mid + 1;
+            }
+        }
+
+        return low;
+        
+    }
+
+    public static Boolean possible(int [] bloomDay , int day , int m , int k){
+        int cnt = 0, noOfB = 0;
+         int n = bloomDay.length;
+        for(int i = 0 ; i< n ; i++){
+        if(bloomDay[i] <= day){
+            cnt++;
+        }else{
+            noOfB += (cnt/k);
+            cnt = 0;
+        }
+        }
+
+        noOfB += (cnt/k);
+        return noOfB >= m ;
+    }
+    
 
 	//875 Leetcode
     public boolean isPossible(int mid, int[] arr, int h){
