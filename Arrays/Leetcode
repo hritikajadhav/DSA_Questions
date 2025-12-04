@@ -3,8 +3,52 @@ public static void main (String[] args){
 
 }
 
+	//410 Leetcode
+    public int splitArray(int[] nums, int k) {
+       int n = nums.length;
+        int min = Integer.MIN_VALUE;
+        int max = 0;
+        if(n < k){
+            return 0;
+        }
+        for(int num : nums){
+            min = Math.max(min, num);
+            max += num;
+        }
+
+        int soln = 0;
+        while(min <= max){
+            int mid = min + (max-min)/2;
+            if(canFit(nums, mid, k)){
+                soln = mid;
+                max = mid-1;
+            }
+            else{
+                min = mid + 1;
+            }
+        }
+
+        return soln;
+    }
+
+    public static boolean canFit(int[] nums,int perK,int k){
+        int count = 1;
+        int sum = 0;
+        for(int num : nums){
+            if((sum+num)>perK){
+                count++;
+                sum = num;
+            }
+            else{
+                sum += num;
+            }
+        }
+        return count <= k;
+    }
+
+
 	//1539 Leetcode
-public int findKthPositive(int[] arr, int k) {
+	public int findKthPositive(int[] arr, int k) {
         int start =0, end=arr.length-1;
         while(start<=end){
             int mid = start + (end - start)/2;
@@ -20,7 +64,7 @@ public int findKthPositive(int[] arr, int k) {
     }
 
 	//1011 Leetcode
-public int shipWithinDays(int[] weights, int days) {
+	public int shipWithinDays(int[] weights, int days) {
         int start = 0 , end = 0;
         for(int num : weights){
             start= Math.max(start , num);
@@ -51,7 +95,7 @@ public int shipWithinDays(int[] weights, int days) {
     }
 
 	//1283 Leetcode
-public int smallestDivisor(int[] nums, int threshold) {
+	public int smallestDivisor(int[] nums, int threshold) {
         int start=1, high=Integer.MAX_VALUE;
         int ans=0;
         for(int i: nums){
@@ -81,7 +125,7 @@ public int smallestDivisor(int[] nums, int threshold) {
     }
 
 	//1482 Leetcode
-public int minDays(int[] bloomDay, int m, int k) {
+	public int minDays(int[] bloomDay, int m, int k) {
         long val = (long) m * k ;
          int n =  bloomDay.length;
        // edge case 
