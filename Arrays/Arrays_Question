@@ -14,6 +14,46 @@ public class Main {
 		
 	}
 
+	//Painters job 04-12-25
+	public static int findLargestMinDistance(int[] boards, int k) {
+		int min= Integer.MIN_VALUE;
+		int max =0;
+		int ans=0;
+		for(int i : boards) {
+			min = Math.max(min , i);
+			max+=i;
+		}
+		
+		while(min<=max) {
+			int mid = min + (max-min)/2;
+			int a = countPainter(boards,mid);
+			
+			if(a>k) {
+				min=mid+1;
+			}
+			else {
+				ans=mid;
+				max=mid -1;
+			}
+		}
+		return ans;
+	}
+	
+	public static int countPainter(int[] arr , int time) {
+		int painter = 1;
+		int boardpainted=0;
+		
+		for(int i : arr) {
+			if(boardpainted+i <= time) {
+				boardpainted+=i;	
+			}else {
+				painter++;
+				boardpainted=i;
+			}
+		}
+		return painter;
+	}
+
 	//Aggressive cows 03-12-25
     public boolean canPlace(int[] stalls, int cows, int d) {
         // Place first cow at first stall
