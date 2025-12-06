@@ -14,6 +14,27 @@ public class Main {
 		
 	}
 
+	//Maximum number of 1's in a row of matrix 05-12-25
+	public static int rowWithMax1s(int[][] mat) {
+		int m = mat.length;
+		if(m==0) {
+			return -1;
+		}
+		int n = mat[0].length;
+		int row=0,col=n-1;
+		int maxOnes=-1;
+		
+		while(row<m && col>=0) {
+			if(mat[row][col] == 1) {
+				maxOnes=row;
+				col--;
+			}else {
+				row++;
+			}
+		}
+		return maxOnes;       
+    }
+
 	//Painters job 04-12-25
 	public static int findLargestMinDistance(int[] boards, int k) {
 		int min= Integer.MIN_VALUE;
