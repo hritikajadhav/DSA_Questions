@@ -3,7 +3,28 @@ class Main{
 
   }
 
-  //1614 Leetcoe
+  //13 Leetcode
+    public int romanToInt(String s) {
+        Map<Character, Integer> map = Map.of(
+            'I', 1, 'V', 5, 'X', 10,
+            'L', 50, 'C', 100, 'D', 500, 'M', 1000
+        );
+
+        int result=0;
+        for(int i=0 ; i<s.length();i++){
+            int curr = map.get(s.charAt(i));
+            int next = (i+1 < s.length()) ? map.get(s.charAt(i+1)) : 0;
+
+            if(curr < next){
+                result-=curr;
+            }else{
+                result+=curr;
+            }
+        }
+        return result;
+    }
+
+  //1614 Leetcode
     public int maxDepth(String s) {
         int count=0,max=0;
 
