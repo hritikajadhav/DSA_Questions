@@ -1,0 +1,52 @@
+class Main{
+  public static void main(String[] args){
+    
+  }
+
+    //206 Leetcode Recursive method
+    public ListNode reverseList(ListNode head) {
+
+        if(head == null || head.next == null){
+            return head;
+        }
+
+        ListNode newHead = reverseList(head.next);
+        ListNode front = head.next;
+        front.next=head;
+        head.next=null;
+        return newHead;
+    }
+    //3 pointer 
+    public ListNode reverseList(ListNode head) {
+        ListNode present = head;
+        ListNode prev=null;
+
+        while(present != null){
+            ListNode next = present.next;
+            present.next=prev;
+            prev=present;
+            present=next;
+
+            if(next!=null){
+                next=next.next;
+            }
+        }
+        return prev;
+    }
+      
+      //Leetcode 876
+      public ListNode middleNode(ListNode head) {
+        if(head==null){
+            return head;
+        }
+        ListNode fast=head;
+        ListNode slow=head;
+
+        while(fast!=null && fast.next!=null){
+            fast=fast.next.next;
+            slow=slow.next;
+        }
+
+        return slow;
+    }
+}
