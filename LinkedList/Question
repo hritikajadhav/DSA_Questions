@@ -1,0 +1,129 @@
+public class Main {
+
+	public static void main(String[] args) {
+        LL list = new LL();
+        list.insertFirst(30);
+        list.insertFirst(20);
+        list.insertFirst(10);
+        // List: 10 -> 20 -> 30
+
+        list.insertLast(40);
+        // List: 10 -> 20 -> 30 -> 40
+        
+        list.printLL();
+        // Output: START -> 10 -> 20 -> 30 -> 40 -> END (Size: 4)
+
+        System.out.println("Index of 30: " + list.findNode(30)); // Output: 2
+
+        list.delete(20);
+        // List: 10 -> 30 -> 40
+        
+        list.printLL();
+  }
+
+  public static class LL{
+		
+		public class Node{
+			int data;
+			Node next;
+			
+			public Node(int data) {
+				this.data = data;
+			}
+			public Node(int data , Node node) {
+				this.data=data;
+				this.next = node;
+			}
+		}
+		
+		private Node head;
+		private Node tail;
+		private int size;
+		
+		LL(){
+			this.size=0;
+		}
+		
+		public void insertFirst(int data) {
+			Node n = new Node(data);
+			n.next=head;
+			head=n;
+			
+			if(tail==null) {
+				tail=head;
+			}
+			size+=1;
+		}
+		
+		public void delete(int val) {
+			Node n = head;
+			Node prev=null;
+			if(n != null && n.data==val) {
+				head=n.next;
+				if (head == null) {
+	                tail = null;
+	            }
+				size-=1;
+				return;
+			}
+			while(n !=null && n.data!=val) {
+				prev=n;
+				n=n.next;
+			}
+			if (n == null) {
+				return;
+			}
+			prev.next=n.next;
+			if (n == tail) {
+	            tail = prev; 
+	        }
+	        
+	        size -= 1;
+			
+		}
+		
+		public int llSize(Node node) {
+			int size=0;
+			while(node!=null) {
+				size+=1;
+				node=node.next;
+			}
+			return size;
+		}
+		
+		public int findNode(int val) {
+			Node temp = head;
+			int index=0;
+			while(temp!= null) {
+				if (temp.data == val) {
+	                return index;
+	            }
+				index++;
+				temp=temp.next;
+			}
+			return -1;
+		}
+		
+		public void insertLast(int data) {
+	        if (tail == null) {
+	            insertFirst(data); // If list is empty, call insertFirst
+	            return;
+	        }
+	        
+	        Node newNode = new Node(data);
+	        tail.next = newNode;
+	        tail = newNode;
+	        size++;
+	    }
+		
+		public void printLL() {
+			Node n = head;
+			System.out.print("Start");
+			while(n!=null) {
+				System.out.print(n.data + "-->");
+				n=n.next;
+			}
+			System.out.print("End");
+		}
+	}
+}
