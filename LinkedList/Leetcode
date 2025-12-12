@@ -2,7 +2,7 @@ class Main{
   public static void main(String[] args){
     
   }
-    //Leetcode 144
+    //Leetcode 141
     public boolean hasCycle(ListNode head) {
         ListNode fast = head;
         ListNode slow = head;
