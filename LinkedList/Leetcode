@@ -2,6 +2,43 @@ class Main{
   public static void main(String[] args){
     
   }
+
+  //Leetcode 142 
+public class Solution {
+    public ListNode detectCycle(ListNode head) {
+        ListNode fast = head;
+        ListNode slow = head;
+
+        int len=0;
+        while(fast!=null && fast.next!=null){
+            fast= fast.next.next;
+            slow=slow.next;
+            if(fast == slow){
+                do{
+                    slow=slow.next;
+                    len++;
+                    }
+            while(fast != slow);{
+                break;
+            }
+        }
+    }
+
+    if (fast == null || fast.next == null) return null;
+    ListNode f = head;
+    ListNode s = head;
+    while(len > 0){
+            s = s.next;
+            len--;
+    }
+    while(s != f){
+            s = s.next;
+            f = f.next;
+    }
+    return f;
+
+}
+    
     //Leetcode 141
     public boolean hasCycle(ListNode head) {
         ListNode fast = head;
