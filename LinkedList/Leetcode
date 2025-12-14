@@ -3,6 +3,39 @@ class Main{
     
   }
 
+  //Leetcode 328
+    public ListNode oddEvenList(ListNode head) {
+        if(head == null || head.next == null) return head;
+        ListNode odd = head, even = head.next, evenHead=even;
+        while(even!= null && even.next != null){
+            odd.next=even.next;
+            odd = odd.next;
+            even.next = even.next.next;
+            even = even.next;
+        }
+        odd.next=evenHead;
+        return head;
+    }
+
+  // Leetcode 234
+    public boolean isPalindrome(ListNode head) {
+        List<Integer> arr = new ArrayList<>();
+        while(head != null){
+            arr.add(head.val);
+            head = head.next;
+        }
+
+        int left=0, right = arr.size() -1;
+        while(left<right){
+            if (!arr.get(left).equals(arr.get(right))) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return left >= right;
+    }
+
   //Leetcode 142 
 public class Solution {
     public ListNode detectCycle(ListNode head) {
