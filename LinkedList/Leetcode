@@ -3,6 +3,27 @@ class Main{
     
   }
 
+  //Leetcode 2095
+    public ListNode deleteMiddle(ListNode head) {
+        if(head == null || head.next == null) return null;
+        ListNode fast = head;
+        ListNode slow = head;
+        ListNode p = head;
+
+        while(fast!=null && fast.next!=null){
+            fast = fast.next.next;
+            p = slow;
+            slow = slow.next;
+        }
+
+        if(slow.next!=null){
+        p.next = p.next.next;
+        }else{
+            p.next = null;
+        }
+        return head;
+    }
+
   //Leetcode 19
     public ListNode removeNthFromEnd(ListNode head, int n) {
         ListNode temp = new ListNode(0,head);
