@@ -2,7 +2,7 @@ class Main{
   public static void main(String[] args){
 
   }
-//Leetcode 50 
+//Leetcode 50   
     public double myPow(double x, int n) {
         long N = n;
         if (N < 0) {
