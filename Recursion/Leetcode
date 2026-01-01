@@ -10,7 +10,7 @@ class Main{
             N = -N;
         }
         return helper(x, N);
-    }
+    } 
 
     private double helper(double x, long n) {
     
