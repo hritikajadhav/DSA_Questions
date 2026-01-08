@@ -12,7 +12,7 @@ class Main{
         return helper(x, N);
     } 
 
-    private double helper(double x, long n) {
+    private double helper(double x , long n) {
     
         if (n == 0) {
             return 1.0;
